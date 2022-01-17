@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:chopper/chopper.dart';
 import 'package:climate/features/shared/models/weather_api.dart';
+import 'package:location/location.dart';
 
 class WeatherConverter implements Converter {
   @override
@@ -27,10 +28,18 @@ class WeatherConverter implements Converter {
     }
     try {
       final mapData = json.decode(body);
-      final forcastQuery = convertApiWeahter(
-        WeatherFocusResult.fromJson(mapData),
-      );
-      return response.copyWith<BodyType>(body: forcastQuery as BodyType);
+      if (mapData.runtimeType == List) {
+        final List<PossibleLocation> searchQuery = [];
+        for (var i in mapData) {
+          searchQuery.add(PossibleLocation.fromJson(i));
+        }
+        return response.copyWith<BodyType>(body: searchQuery as BodyType);
+      } else {
+        final forcastQuery = convertApiWeahter(
+          WeatherFocusResult.fromJson(mapData),
+        );
+        return response.copyWith<BodyType>(body: forcastQuery as BodyType);
+      }
     } catch (e) {
       chopperLogger.warning(e);
       return response.copyWith<BodyType>(bodyError: e.toString());

@@ -115,13 +115,9 @@ class PossibleLocation with _$PossibleLocation {
 
   const factory PossibleLocation({
     required String name,
-    required String region,
     required double lat,
     required double lon,
-    required double url,
   }) = _PossibleLocation;
-
-  String get fullLocation => name + ', ' + region;
 
   factory PossibleLocation.fromJson(Map<String, dynamic> json) =>
       _$PossibleLocationFromJson(json);

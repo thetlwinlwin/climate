@@ -134,17 +134,13 @@ Map<String, dynamic> _$$_ForecastWeatherToJson(_$_ForecastWeather instance) =>
 _$_PossibleLocation _$$_PossibleLocationFromJson(Map<String, dynamic> json) =>
     _$_PossibleLocation(
       name: json['name'] as String,
-      region: json['region'] as String,
       lat: (json['lat'] as num).toDouble(),
       lon: (json['lon'] as num).toDouble(),
-      url: (json['url'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$_PossibleLocationToJson(_$_PossibleLocation instance) =>
     <String, dynamic>{
       'name': instance.name,
-      'region': instance.region,
       'lat': instance.lat,
       'lon': instance.lon,
-      'url': instance.url,
     };

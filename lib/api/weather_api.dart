@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:chopper/chopper.dart';
 import 'package:climate/api/converters.dart';
 import 'package:climate/api/interceptors.dart';
@@ -8,6 +10,7 @@ const String apiUrl = 'http://api.weatherapi.com/v1';
 
 @ChopperApi()
 abstract class WeatherApiService extends ChopperService {
+  /// this api.weatherapi didn't even try to correct the places in Myanmar.
   @Get(path: 'forecast.json')
   Future<Response<AfterConvert>> getForecastWeather({
     // could be lat,long or url or just a name
@@ -16,6 +19,7 @@ abstract class WeatherApiService extends ChopperService {
     @Query('aqi') String aqi = 'no',
     @Query('alerts') String alerts = 'no',
   });
+
   @Get(path: 'search.json')
   Future<Response<List<PossibleLocation>>> locationSearchResults({
     // could be lat,long or url or just a name

@@ -22,7 +22,6 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
   }
 
-// TODO: read_weather is here.
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,14 +37,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-
-
-
-//  void readWeather() async {
-//     String loadString = await rootBundle.loadString('assets/yangon.json');
-//     WeatherFocusResult result =
-//         WeatherFocusResult.fromJson(jsonDecode(loadString));
-//     List<Forecasting> gg = convertApiWeahter(result)['forcast'];
-//     print(gg[0].getBackgroundImg);
-//   }

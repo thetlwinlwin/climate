@@ -1,5 +1,6 @@
 import 'package:chopper/chopper.dart';
 import 'package:climate/api/weather_api.dart';
+import 'package:climate/features/search/search_screen.dart';
 import 'package:climate/features/shared/models/weather.dart';
 import 'package:climate/features/shared/models/weather_api.dart';
 import 'package:climate/managers/status_manager.dart';
@@ -51,7 +52,13 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  void searchHandler() {}
+  void searchHandler() async {
+    final result = await showSearch(
+      context: context,
+      delegate: CitySearch(),
+    );
+    print(result);
+  }
 
   @override
   Widget build(BuildContext context) {

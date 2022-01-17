@@ -5,6 +5,8 @@ import 'package:location/location.dart';
 import 'dart:io';
 
 class StatusManager with ChangeNotifier {
+  /// dart:io does not work on web
+
   bool _initialized = false;
   bool _isLocationPermitted = false;
   List<String> _latLong = [];

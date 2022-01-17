@@ -1742,17 +1742,11 @@ class _$PossibleLocationTearOff {
   const _$PossibleLocationTearOff();
 
   _PossibleLocation call(
-      {required String name,
-      required String region,
-      required double lat,
-      required double lon,
-      required double url}) {
+      {required String name, required double lat, required double lon}) {
     return _PossibleLocation(
       name: name,
-      region: region,
       lat: lat,
       lon: lon,
-      url: url,
     );
   }
 
@@ -1767,10 +1761,8 @@ const $PossibleLocation = _$PossibleLocationTearOff();
 /// @nodoc
 mixin _$PossibleLocation {
   String get name => throw _privateConstructorUsedError;
-  String get region => throw _privateConstructorUsedError;
   double get lat => throw _privateConstructorUsedError;
   double get lon => throw _privateConstructorUsedError;
-  double get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1783,7 +1775,7 @@ abstract class $PossibleLocationCopyWith<$Res> {
   factory $PossibleLocationCopyWith(
           PossibleLocation value, $Res Function(PossibleLocation) then) =
       _$PossibleLocationCopyWithImpl<$Res>;
-  $Res call({String name, String region, double lat, double lon, double url});
+  $Res call({String name, double lat, double lon});
 }
 
 /// @nodoc
@@ -1798,19 +1790,13 @@ class _$PossibleLocationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
-    Object? region = freezed,
     Object? lat = freezed,
     Object? lon = freezed,
-    Object? url = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      region: region == freezed
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
               as String,
       lat: lat == freezed
           ? _value.lat
@@ -1819,10 +1805,6 @@ class _$PossibleLocationCopyWithImpl<$Res>
       lon: lon == freezed
           ? _value.lon
           : lon // ignore: cast_nullable_to_non_nullable
-              as double,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -1835,7 +1817,7 @@ abstract class _$PossibleLocationCopyWith<$Res>
           _PossibleLocation value, $Res Function(_PossibleLocation) then) =
       __$PossibleLocationCopyWithImpl<$Res>;
   @override
-  $Res call({String name, String region, double lat, double lon, double url});
+  $Res call({String name, double lat, double lon});
 }
 
 /// @nodoc
@@ -1852,19 +1834,13 @@ class __$PossibleLocationCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = freezed,
-    Object? region = freezed,
     Object? lat = freezed,
     Object? lon = freezed,
-    Object? url = freezed,
   }) {
     return _then(_PossibleLocation(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      region: region == freezed
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
               as String,
       lat: lat == freezed
           ? _value.lat
@@ -1874,10 +1850,6 @@ class __$PossibleLocationCopyWithImpl<$Res>
           ? _value.lon
           : lon // ignore: cast_nullable_to_non_nullable
               as double,
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as double,
     ));
   }
 }
@@ -1886,11 +1858,7 @@ class __$PossibleLocationCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_PossibleLocation extends _PossibleLocation {
   const _$_PossibleLocation(
-      {required this.name,
-      required this.region,
-      required this.lat,
-      required this.lon,
-      required this.url})
+      {required this.name, required this.lat, required this.lon})
       : super._();
 
   factory _$_PossibleLocation.fromJson(Map<String, dynamic> json) =>
@@ -1899,17 +1867,13 @@ class _$_PossibleLocation extends _PossibleLocation {
   @override
   final String name;
   @override
-  final String region;
-  @override
   final double lat;
   @override
   final double lon;
-  @override
-  final double url;
 
   @override
   String toString() {
-    return 'PossibleLocation(name: $name, region: $region, lat: $lat, lon: $lon, url: $url)';
+    return 'PossibleLocation(name: $name, lat: $lat, lon: $lon)';
   }
 
   @override
@@ -1918,20 +1882,16 @@ class _$_PossibleLocation extends _PossibleLocation {
         (other.runtimeType == runtimeType &&
             other is _PossibleLocation &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.region, region) &&
             const DeepCollectionEquality().equals(other.lat, lat) &&
-            const DeepCollectionEquality().equals(other.lon, lon) &&
-            const DeepCollectionEquality().equals(other.url, url));
+            const DeepCollectionEquality().equals(other.lon, lon));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(region),
       const DeepCollectionEquality().hash(lat),
-      const DeepCollectionEquality().hash(lon),
-      const DeepCollectionEquality().hash(url));
+      const DeepCollectionEquality().hash(lon));
 
   @JsonKey(ignore: true)
   @override
@@ -1947,10 +1907,8 @@ class _$_PossibleLocation extends _PossibleLocation {
 abstract class _PossibleLocation extends PossibleLocation {
   const factory _PossibleLocation(
       {required String name,
-      required String region,
       required double lat,
-      required double lon,
-      required double url}) = _$_PossibleLocation;
+      required double lon}) = _$_PossibleLocation;
   const _PossibleLocation._() : super._();
 
   factory _PossibleLocation.fromJson(Map<String, dynamic> json) =
@@ -1959,13 +1917,9 @@ abstract class _PossibleLocation extends PossibleLocation {
   @override
   String get name;
   @override
-  String get region;
-  @override
   double get lat;
   @override
   double get lon;
-  @override
-  double get url;
   @override
   @JsonKey(ignore: true)
   _$PossibleLocationCopyWith<_PossibleLocation> get copyWith =>

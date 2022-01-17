@@ -1,4 +1,5 @@
 import 'package:climate/features/home/home_screen.dart';
+import 'package:climate/features/search/search_screen.dart';
 import 'package:climate/features/splash/splash_screen.dart';
 import 'package:go_router/go_router.dart';
 
