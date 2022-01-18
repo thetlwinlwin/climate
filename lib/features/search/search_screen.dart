@@ -4,8 +4,8 @@ import 'package:climate/features/shared/models/weather_api.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class CitySearch extends SearchDelegate<String> {
-  late String result;
+class CitySearch extends SearchDelegate<String?> {
+  late String? result;
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -22,6 +22,7 @@ class CitySearch extends SearchDelegate<String> {
   Widget? buildLeading(BuildContext context) {
     return IconButton(
       onPressed: () {
+        result = null;
         close(context, result);
       },
       icon: const Icon(Icons.arrow_back),
@@ -34,18 +35,27 @@ class CitySearch extends SearchDelegate<String> {
       future: _search(context),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
-          return ListView.builder(
-            itemCount: snapshot.data!.length,
-            itemBuilder: (context, index) {
-              return ListTile(
-                title: Text(snapshot.data![index].name),
-                onTap: () {
-                  result = snapshot.data![index].name;
-                  close(context, result);
-                },
-              );
-            },
-          );
+          final searchresults = snapshot.data;
+          if (searchresults!.isNotEmpty) {
+            return ListView.builder(
+              itemCount: searchresults.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(searchresults[index].name),
+                  onTap: () {
+                    final String lat = searchresults[index].lat.toString();
+                    final String lon = searchresults[index].lon.toString();
+                    result = lat + ',' + lon;
+                    close(context, result);
+                  },
+                );
+              },
+            );
+          } else {
+            return const Center(
+              child: Text('unfortunately there is no matching places.'),
+            );
+          }
         } else {
           return const Center(
             child: CircularProgressIndicator.adaptive(),
@@ -65,31 +75,12 @@ class CitySearch extends SearchDelegate<String> {
   @override
   Widget buildSuggestions(BuildContext context) {
     if (query.isNotEmpty) {
-      print('here');
-      return FutureBuilder<List<PossibleLocation>?>(
-        future: _search(context),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(snapshot.data![index].name),
-                  onTap: () => query = snapshot.data![index].name,
-                );
-              },
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator.adaptive(),
-            );
-          }
-        },
-      );
-    } else {
       return const Center(
-        child: Text('Type city name or lat,lon'),
+        child: Text('press enter/search to find'),
       );
     }
+    return const Center(
+      child: Text('Type city name or lat,lon'),
+    );
   }
 }

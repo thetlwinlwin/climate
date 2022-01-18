@@ -46,10 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     // if we adding this in the build state, when we use setState, it will retrigger again.
-    future = Provider.of<WeatherApiService>(context, listen: false)
-        .getForecastWeather(
-            commaSeparatedLatLon: widget.lat + ',' + widget.long, days: 3);
+    String latLon = widget.lat + ',' + widget.long;
+    getWeather(latLon: latLon);
     super.initState();
+  }
+
+  void getWeather({required String latLon}) {
+    future = Provider.of<WeatherApiService>(context, listen: false)
+        .getForecastWeather(commaSeparatedLatLon: latLon, days: 3);
   }
 
   void searchHandler() async {
@@ -57,7 +61,11 @@ class _HomeScreenState extends State<HomeScreen> {
       context: context,
       delegate: CitySearch(),
     );
-    print(result);
+    if (result != null) {
+      setState(() {
+        getWeather(latLon: result);
+      });
+    }
   }
 
   @override
